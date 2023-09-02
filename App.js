@@ -6,13 +6,11 @@ import {
   View,
   Pressable,
   FlatList,
-  Button
 } from 'react-native';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { initializeApp } from 'firebase/app';
 import { AntDesign } from '@expo/vector-icons';
-
 // Optionally import the services that you want to use
 // import {...} from "firebase/auth";
 // import {...} from "firebase/database";
@@ -141,9 +139,13 @@ const AddButton = ({ navigation }) => (
 
   <Pressable
     title="New Item"
-    onPress={() => console.log("Plus button pressed")} >
-    <AntDesign name="plus" size={24} color="blue" />
-  </Pressable>
+    onPress={() => {
+      console.log("Add button was pressed");
+      var todoPromise = fetch('https://jsonplaceholder.typicode.com/todos/1');
+      todoPromise.then(response => response.json()).then(json => { console.log(json.completed) });
+    }} >
+    <AntDesign name="plus" size={24} color="#3478c6" />
+  </Pressable >
 );
 
 
